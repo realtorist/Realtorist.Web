@@ -59,13 +59,26 @@ jobs:
       run: docker-compose build
     - name: Tag docker image version
       run: docker tag ghcr.io/realtorist/realtorist:latest ghcr.io/realtorist/realtorist:$GITHUB_RUN_NUMBER
+    - name: Tag docker image version for Docker hub
+      run: docker tag ghcr.io/realtorist/realtorist:latest dbondarchuk/realtorist:$GITHUB_RUN_NUMBER
+    - name: Tag docker image latest for Docker hub
+      run: docker tag ghcr.io/realtorist/realtorist:latest dbondarchuk/realtorist:latest
     - name: Log in to the Container registry
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
       with:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Push image (latest)
+    - name: Log in to the Docker hub
+      uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      with:
+        username: ${{ secrets.SECRET_DOCKER_USERNAME }}
+        password: ${{ secrets.SECRET_DOCKER_TOKEN }}
+    - name: Push image (latest) - ghcr
       run: docker push ghcr.io/realtorist/realtorist:latest
-    - name: Push image (version)
+    - name: Push image (version) - ghcr
       run: docker push ghcr.io/realtorist/realtorist:$GITHUB_RUN_NUMBER
+    - name: Push image (latest) - Docker hub
+      run: docker push dbondarchuk/realtorist:latest
+    - name: Push image (version) - Docker hub
+      run: docker push dbondarchuk/realtorist:$GITHUB_RUN_NUMBER
