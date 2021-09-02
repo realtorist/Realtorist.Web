@@ -68,4 +68,4 @@ jobs:
     - name: Push image (latest)
       run: docker push ghcr.io/realtorist/realtorist:latest
     - name: Push image (version)
-      run: docker push ghcr.io/realtorist/realtorist:GITHUB_RUN_NUMBER
+      run: docker push ghcr.io/realtorist/realtorist:$GITHUB_RUN_NUMBER
