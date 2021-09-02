@@ -23,7 +23,7 @@ jobs:
         workflow: publish.yml
         branch: master
         event: push
-        name: build
+        name: Realtorist.Web.Application
         path: Extension/Application
         repo: realtorist/Realtorist.Web.Application
     - name: Download admin application
@@ -33,7 +33,7 @@ jobs:
         workflow: publish.yml
         branch: master
         event: push
-        name: build
+        name: Realtorist.Web.Admin.Application
         path: Extension/Admin
         repo: realtorist/Realtorist.Web.Admin.Application
     - name: Download theme
@@ -43,7 +43,7 @@ jobs:
         workflow: publish.yml
         branch: master
         event: push
-        name: build
+        name: Realtorist.Web.Themes.Default
         path: Extension/Theme
         repo: realtorist/Realtorist.Web.Themes.Default
     - name: Download LetsEncrypt
@@ -53,7 +53,7 @@ jobs:
         workflow: publish.yml
         branch: master
         event: push
-        name: build
+        name: Realtorist.Web.LetsEncrypt
         path: Extension/LetsEncrypt
         repo: realtorist/Realtorist.Web.LetsEncrypt
     - name: Build docker image
