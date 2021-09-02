@@ -1,0 +1,23 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  web:
+    image: ghcr.io/realtorist/realtorist:latest
+    build:
+      context: .
+      args:
+        - GITHUB_USER=${GITHUB_USER}
+        - NUGET_PAT=${NUGET_PAT}
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./Realtorist.Web/wwwroot/docker-uploads:/app/wwwroot/uploads
+      - ./Realtorist.Web/certs:/app/certs
+      - ./Realtorist.Web/logs:/app/logs
+    environment:
+        - DatabaseSettings__ConnectionString=${REALTORIST_DB_CONNECTION}
+        - DatabaseSettings__DatabaseName=${REALTORIST_DB_DATABASE}
+        - Encryption__Salt=${ENCRYPTION_SALT}
+        - Encryption__Secret=${ENCRYPTION_SECRET}
+        - ASPNETCORE_ENVIRONMENT=Production
+        - ASPNETCORE_URLS=https://+:443;http://+:80

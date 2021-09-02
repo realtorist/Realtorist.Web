@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>Realtorist.Web</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Dmytro Bondarchuk</Authors>
+    <Title>Realtorist.Web</Title>
+    <Description>Main application for the Realtorist framework</Description>
+    <RepositoryUrl>https://github.com/realtorist/Realtorist.Web</RepositoryUrl>
+    <ReleaseNotes>Initial publish</ReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ExtCore.Mvc" Version="6.0.0" />
+    <PackageReference Include="ExtCore.WebApplication" Version="6.0.0" />
+  </ItemGroup>
+
+  <!-- <ItemGroup> 
+    <None Include="Extensions\**"> 
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory> 
+    </None> 
+  </ItemGroup> -->
+
+</Project>

@@ -1,0 +1,1 @@
+Startup application for the Realtorist project

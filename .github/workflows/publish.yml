@@ -1,0 +1,64 @@
+name: Build & Publish
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_USER: ${{ secrets.SECRET_GITHUB_USER }}
+      NUGET_PAT: ${{ secrets.SECRET_NUGET_PAT }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Download main application
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: publish.yml
+        branch: master
+        event: push
+        name: build
+        path: Extension/Application
+        repo: realtorist/Realtorist.Web.Application
+    - name: Download admin application
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: publish.yml
+        branch: master
+        event: push
+        name: build
+        path: Extension/Admin
+        repo: realtorist/Realtorist.Web.Admin.Application
+    - name: Download theme
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: publish.yml
+        branch: master
+        event: push
+        name: build
+        path: Extension/Theme
+        repo: realtorist/Realtorist.Web.Themes.Default
+    - name: Download LetsEncrypt
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: publish.yml
+        branch: master
+        event: push
+        name: build
+        path: Extension/LetsEncrypt
+        repo: realtorist/Realtorist.Web.LetsEncrypt
+    - name: Build docker image
+      run: docker-compose build
+    - name: Tag docker image version
+      run: docker tag ghcr.io/realtorist/realtorist:latest ghcr.io/realtorist/realtorist:$GITHUB_RUN_NUMBER
+    - name: Push image (latest)
+      run: docker push ghcr.io/realtorist/realtorist:GITHUB_RUN_NUMBER
