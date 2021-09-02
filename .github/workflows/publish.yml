@@ -12,10 +12,6 @@ jobs:
       NUGET_PAT: ${{ secrets.SECRET_NUGET_PAT }}
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
     - name: Download main application
       uses: dawidd6/action-download-artifact@v2
       with:
@@ -24,7 +20,7 @@ jobs:
         branch: master
         event: push
         name: Realtorist.Web.Application
-        path: Extension/Application
+        path: Extensions/Application
         repo: realtorist/Realtorist.Web.Application
     - name: Download admin application
       uses: dawidd6/action-download-artifact@v2
@@ -34,7 +30,7 @@ jobs:
         branch: master
         event: push
         name: Realtorist.Web.Admin.Application
-        path: Extension/Admin
+        path: Extensions/Admin
         repo: realtorist/Realtorist.Web.Admin.Application
     - name: Download theme
       uses: dawidd6/action-download-artifact@v2
@@ -44,7 +40,7 @@ jobs:
         branch: master
         event: push
         name: Realtorist.Web.Themes.Default
-        path: Extension/Theme
+        path: Extensions/Theme
         repo: realtorist/Realtorist.Web.Themes.Default
     - name: Download LetsEncrypt
       uses: dawidd6/action-download-artifact@v2
@@ -54,7 +50,7 @@ jobs:
         branch: master
         event: push
         name: Realtorist.Web.LetsEncrypt
-        path: Extension/LetsEncrypt
+        path: Extensions/LetsEncrypt
         repo: realtorist/Realtorist.Web.LetsEncrypt
     - name: Build docker image
       run: docker-compose build
