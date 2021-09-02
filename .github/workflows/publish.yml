@@ -61,4 +61,6 @@ jobs:
     - name: Tag docker image version
       run: docker tag ghcr.io/realtorist/realtorist:latest ghcr.io/realtorist/realtorist:$GITHUB_RUN_NUMBER
     - name: Push image (latest)
+      run: docker push ghcr.io/realtorist/realtorist:latest
+    - name: Push image (version)
       run: docker push ghcr.io/realtorist/realtorist:GITHUB_RUN_NUMBER
