@@ -4,6 +4,9 @@ on:
   push:
     branches: [ master ]
 
+env:
+  REGISTRY: ghcr.io
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -56,6 +59,12 @@ jobs:
       run: docker-compose build
     - name: Tag docker image version
       run: docker tag ghcr.io/realtorist/realtorist:latest ghcr.io/realtorist/realtorist:$GITHUB_RUN_NUMBER
+    - name: Log in to the Container registry
+      uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Push image (latest)
       run: docker push ghcr.io/realtorist/realtorist:latest
     - name: Push image (version)
