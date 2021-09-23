@@ -14,6 +14,7 @@
   <ItemGroup>
     <PackageReference Include="ExtCore.Mvc" Version="6.0.0" />
     <PackageReference Include="ExtCore.WebApplication" Version="6.0.0" />
+    <PackageReference Include="Realtorist.Extensions.Base" Version="0.0.1" />
   </ItemGroup>
 
   <!-- <ItemGroup> 
