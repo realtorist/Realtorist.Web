@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Realtorist.Extensions.Base.Manager;
+using Realtorist.Web.Extensions;
 using Realtorist.Web.Helpers;
 
 namespace Realtorist.Web
@@ -29,6 +31,8 @@ namespace Realtorist.Web
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IWebHostEnvironment>(CurrentEnvironment);
 
+            services.AddSingleton<IExtensionManager, ExtCoreExtensionManager>();
+
             var defaultWebRootProvider = CurrentEnvironment.WebRootFileProvider;
             if (defaultWebRootProvider is CompositeFileProvider)
             {
@@ -40,9 +44,7 @@ namespace Realtorist.Web
                 throw new InvalidOperationException($"Unsupported default file provider of {defaultWebRootProvider.GetType()}");
             }
 
-            //services.AddExtCore(_extensionsPath, true);
             services.AddExtensions(_extensionsPath, true);
-            //services.AddPlugins(_extensionsPath);
 
             if (CurrentEnvironment.WebRootFileProvider is CompositeFileProvider)
             {
@@ -54,9 +56,7 @@ namespace Realtorist.Web
 
         public void Configure(IApplicationBuilder applicationBuilder)
         {
-            //applicationBuilder.UseExtCore();
             applicationBuilder.UseExtensions();
-            //applicationBuilder.UsePlugins();
         }
     }
 }
