@@ -17,10 +17,4 @@
     <PackageReference Include="Realtorist.Extensions.Base" Version="0.0.1" />
   </ItemGroup>
 
-  <!-- <ItemGroup> 
-    <None Include="Extensions\**"> 
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory> 
-    </None> 
-  </ItemGroup> -->
-
 </Project>
