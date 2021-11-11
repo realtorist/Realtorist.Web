@@ -94,7 +94,7 @@ jobs:
         event: push
         name: Realtorist.RetsClient.Implementations.Crea
         path: Extensions/CREA
-        repo: Realtorist.RetsClient.Implementations.Crea
+        repo: realtorist/Realtorist.RetsClient.Implementations.Crea
     - name: Build docker image
       run: docker-compose build
     - name: Tag docker image version
