@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
 using Realtorist.Extensions.Base.Manager;
 using Realtorist.Web.Extensions;
 using Realtorist.Web.Helpers;
@@ -32,6 +33,12 @@ namespace Realtorist.Web
             services.AddSingleton<IWebHostEnvironment>(CurrentEnvironment);
 
             services.AddSingleton<IExtensionManager, ExtCoreExtensionManager>();
+
+            services.AddLogging(loggingBuilder =>
+            {
+                var loggingSection = Configuration.GetSection("Logging");
+                loggingBuilder.AddFile(loggingSection);
+            });
 
             var defaultWebRootProvider = CurrentEnvironment.WebRootFileProvider;
             if (defaultWebRootProvider is CompositeFileProvider)

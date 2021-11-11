@@ -14,9 +14,9 @@
   <ItemGroup>
     <PackageReference Include="ExtCore.Mvc" Version="6.0.0" />
     <PackageReference Include="ExtCore.WebApplication" Version="6.0.0" />
-    <PackageReference Include="NReco.Logging.File" Version="1.1.1"  />
+    <PackageReference Include="NReco.Logging.File" Version="1.1.1" />
     
-    <PackageReference Include="Realtorist.Extensions.Base" Version="0.0.2" />
+    <PackageReference Include="Realtorist.Extensions.Base" Version="0.0.3" />
   </ItemGroup>
 
 </Project>
