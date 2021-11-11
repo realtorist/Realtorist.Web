@@ -84,7 +84,7 @@ jobs:
         event: push
         name: Realtorist.GeoCoding.Implementations.Here
         path: Extensions/HereGeoCoding
-        repo: Realtorist.GeoCoding.Implementations.Here
+        repo: realtorist/Realtorist.GeoCoding.Implementations.Here
     - name: Download CREA DDF
       uses: dawidd6/action-download-artifact@v2
       with:
