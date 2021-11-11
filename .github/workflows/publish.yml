@@ -55,6 +55,46 @@ jobs:
         name: Realtorist.Web.LetsEncrypt
         path: Extensions/LetsEncrypt
         repo: realtorist/Realtorist.Web.LetsEncrypt
+    - name: Download services
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: publish.yml
+        branch: master
+        event: push
+        name: Realtorist.Services.Implementations.Default
+        path: Extensions/Services
+        repo: realtorist/Realtorist.Services.Implementations.Default
+    - name: Download data access
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: publish.yml
+        branch: master
+        event: push
+        name: Realtorist.DataAccess.Implementations.Mongo
+        path: Extensions/MongoDataAccess
+        repo: realtorist/Realtorist.DataAccess.Implementations.Mongo
+    - name: Download geo coding
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: publish.yml
+        branch: master
+        event: push
+        name: Realtorist.GeoCoding.Implementations.Here
+        path: Extensions/HereGeoCoding
+        repo: Realtorist.GeoCoding.Implementations.Here
+    - name: Download CREA DDF
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: publish.yml
+        branch: master
+        event: push
+        name: Realtorist.RetsClient.Implementations.Crea
+        path: Extensions/CREA
+        repo: Realtorist.RetsClient.Implementations.Crea
     - name: Build docker image
       run: docker-compose build
     - name: Tag docker image version
